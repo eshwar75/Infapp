@@ -31,7 +31,8 @@ const AuthNavigator = () => {
 			screenOptions={{
 				headerShown: false,
 			}}
-			initialRouteName="homeScreen"
+			// initialRouteName="homeScreen"
+			initialRouteName="signIn"
 		>
 			<Stack.Screen name="signIn" component={SignIn} />
 			<Stack.Screen name="signUp" component={SignUp} />
