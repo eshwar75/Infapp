@@ -9,6 +9,7 @@ import { CreatePassword } from '../Screens/SignInScreen/CreatePassword';
 import { HomeScreen } from '../Screens/HomeScreen/HomeScreen';
 import { Portfolio } from '../Screens/PortfolioScreen/Portfolio';
 import { MarketTrends } from '../Screens/MarketTrendsScreen/MarketTrends';
+import { Notification } from '../Screens/Notification/Notification';
 
 export type LoginNavigatorParamList = {
 	signIn: undefined;
@@ -18,6 +19,7 @@ export type LoginNavigatorParamList = {
 	homeScreen: undefined;
 	portfolio: undefined;
 	marketTrends: undefined;
+	notification: undefined;
 	forgotPassword: {
 		email: string;
 	};
@@ -41,6 +43,7 @@ const AuthNavigator = () => {
 			<Stack.Screen name="homeScreen" component={HomeScreen} />
 			<Stack.Screen name="marketTrends" component={MarketTrends} />
 			<Stack.Screen name="portfolio" component={Portfolio} />
+			<Stack.Screen name="notification" component={Notification} />
 		</Stack.Navigator>
 	);
 };
