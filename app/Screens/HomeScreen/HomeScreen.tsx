@@ -153,7 +153,16 @@ export const HomeScreen: React.FunctionComponent<
 									subTitle: 'USDT',
 								},
 							]}
-							renderItem={item => <Portfolio data={item} />}
+							renderItem={item => (
+								<Portfolio
+									data={item}
+									onpress={() =>
+										props.navigation.navigate('individualPortfolio', {
+											screenheading: `${item.item.title} (${item.item.subTitle})`,
+										})
+									}
+								/>
+							)}
 							keyExtractor={item => item.id}
 						/>
 					</View>
@@ -438,11 +447,11 @@ const WalletBalance = (props: { data: any }) => {
 };
 
 const Portfolio = (props: any) => {
-	const { data } = props;
+	const { data, onpress } = props;
 
 	return (
 		<View style={{ flex: 1, marginRight: 16 }}>
-			<View
+			<TouchableOpacity
 				style={{
 					width: width(50),
 					padding: 20,
@@ -451,6 +460,7 @@ const Portfolio = (props: any) => {
 					marginTop: 10,
 					marginBottom: 20,
 				}}
+				onPress={onpress}
 			>
 				<View
 					style={{
@@ -489,7 +499,7 @@ const Portfolio = (props: any) => {
 					{data.item.balance}
 				</Text>
 				<Text style={{ color: '#CCCCCC' }}>{data.item.subTitle}</Text>
-			</View>
+			</TouchableOpacity>
 		</View>
 	);
 };

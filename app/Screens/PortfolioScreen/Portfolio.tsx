@@ -163,52 +163,88 @@ export const Portfolio: React.FunctionComponent<
 				</View>
 				<View style={{ paddingBottom: 20 }}>
 					<MarketingCard
+						isEnableOpacity={true}
 						title="Ripple"
 						subTitle="2500 XRP (230.44)"
 						amount="12,64.80"
 						percentage="-3.84%"
 						color="red"
 						imagePath={require('../../assets/images/troncoin.png')}
+						onPress={() =>
+							props.navigation.navigate('individualPortfolio', {
+								screenheading: 'Ripple',
+							})
+						}
 					/>
 					<MarketingCard
+						isEnableOpacity={true}
 						title="Etherium"
 						subTitle="24 ETH (190.19)"
 						amount="12,64.80"
 						percentage="+3.84%"
 						color="green"
 						imagePath={require('../../assets/images/ethcoin.png')}
+						onPress={() =>
+							props.navigation.navigate('individualPortfolio', {
+								screenheading: 'Ripple',
+							})
+						}
 					/>
 					<MarketingCard
+						isEnableOpacity={true}
 						title="Binance Coin"
 						subTitle="2BCN (901.56)"
 						amount="12,64.80"
 						percentage="-5.84%"
 						color="red"
 						imagePath={require('../../assets/images/binancecoin.png')}
+						onPress={() =>
+							props.navigation.navigate('individualPortfolio', {
+								screenheading: 'Ripple',
+							})
+						}
 					/>
 					<MarketingCard
+						isEnableOpacity={true}
 						title="Pound"
 						subTitle="44.000. GBP (230.44)"
 						amount="12,64.80"
 						percentage="-1.84%"
 						color="red"
 						imagePath={require('../../assets/images/pound.png')}
+						onPress={() =>
+							props.navigation.navigate('individualPortfolio', {
+								screenheading: 'Ripple',
+							})
+						}
 					/>
 					<MarketingCard
+						isEnableOpacity={true}
 						title="Tether"
 						subTitle="2 USDT (901.56)"
 						amount="12,64.80"
 						percentage="+2.84%"
 						color="green"
 						imagePath={require('../../assets/images/tether.png')}
+						onPress={() =>
+							props.navigation.navigate('individualPortfolio', {
+								screenheading: 'Ripple',
+							})
+						}
 					/>
 					<MarketingCard
+						isEnableOpacity={true}
 						title="Bitcoin Cash"
 						subTitle="0.1000000 BTC (840.64)"
 						amount="12,64.80"
 						percentage="-1.84%"
 						color="red"
 						imagePath={require('../../assets/images/ethcoin.png')}
+						onPress={() =>
+							props.navigation.navigate('individualPortfolio', {
+								screenheading: 'Ripple',
+							})
+						}
 					/>
 				</View>
 			</ScrollView>

@@ -1,4 +1,4 @@
-import { Text, View } from 'react-native';
+import { Text, TouchableOpacity, View } from 'react-native';
 import { CustomeImage, totalSize, width } from '../../src';
 
 interface marketingCardTypes {
@@ -8,6 +8,8 @@ interface marketingCardTypes {
 	percentage: string;
 	color: 'red' | 'green' | 'pink' | 'lightgreen';
 	imagePath: any;
+	isEnableOpacity?: boolean;
+	onPress?(): void;
 }
 
 export const MarketingCard = (props: marketingCardTypes) => {
@@ -18,9 +20,12 @@ export const MarketingCard = (props: marketingCardTypes) => {
 		percentage,
 		color = 'red',
 		imagePath,
+		isEnableOpacity = false,
+		onPress,
 	} = props;
 	return (
-		<View
+		<TouchableOpacity
+			disabled={!isEnableOpacity}
 			style={{
 				width: '100%',
 				backgroundColor: '#444444',
@@ -29,6 +34,7 @@ export const MarketingCard = (props: marketingCardTypes) => {
 				marginTop: 15,
 				flexDirection: 'row',
 			}}
+			onPress={onPress}
 		>
 			<CustomeImage imagePath={imagePath} />
 			<View style={{ flex: 1, marginLeft: 10 }}>
@@ -79,6 +85,6 @@ export const MarketingCard = (props: marketingCardTypes) => {
 					</Text>
 				</View>
 			</View>
-		</View>
+		</TouchableOpacity>
 	);
 };
