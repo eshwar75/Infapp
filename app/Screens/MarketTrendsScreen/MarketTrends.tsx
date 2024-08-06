@@ -16,14 +16,17 @@ import React, { useState } from 'react';
 
 export const MarketTrends: React.FunctionComponent<
 	NativeStackScreenProps<LoginNavigatorParamList, 'marketTrends'>
-> = () => {
+> = props => {
 	const [searchData, setSearchdata] = useState('');
 
 	return (
 		<SafeAreaView
 			style={{ flex: 1, backgroundColor: appColors.primaryBackgroundColor }}
 		>
-			<Header heading="Market trends" />
+			<Header
+				heading="Market trends"
+				onBackPress={() => props.navigation.goBack()}
+			/>
 			<View style={{ flex: 1, marginHorizontal: 15 }}>
 				<Input
 					placeholderName="Search curency..."

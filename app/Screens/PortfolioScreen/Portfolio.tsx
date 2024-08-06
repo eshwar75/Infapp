@@ -16,12 +16,15 @@ import { MarketingCard } from '../../components';
 
 export const Portfolio: React.FunctionComponent<
 	NativeStackScreenProps<LoginNavigatorParamList, 'portfolio'>
-> = () => {
+> = props => {
 	return (
 		<SafeAreaView
 			style={{ flex: 1, backgroundColor: appColors.primaryBackgroundColor }}
 		>
-			<Header heading="Portfolio" />
+			<Header
+				heading="Portfolio"
+				onBackPress={() => props.navigation.goBack()}
+			/>
 			<ScrollView style={{ flex: 1, marginHorizontal: 15 }}>
 				<View
 					style={{

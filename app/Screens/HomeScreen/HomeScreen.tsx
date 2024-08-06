@@ -30,7 +30,11 @@ export const HomeScreen: React.FunctionComponent<
 				backgroundColor: appColors.primaryBackgroundColor,
 			}}
 		>
-			<Header heading="" enableMenu={true} />
+			<Header
+				isenableMenu={true}
+				isEnableNotification={true}
+				onNotificationPress={() => props.navigation.navigate('notification')}
+			/>
 			<ScrollView>
 				<View style={{ flex: 1, marginHorizontal: 10 }}>
 					<View

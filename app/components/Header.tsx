@@ -4,11 +4,19 @@ import { appColors, width, totalSize, height } from '../../src';
 interface headerTypes {
 	heading?: string;
 	onBackPress?(): void;
-	enableMenu?: boolean;
+	isenableMenu?: boolean;
+	onNotificationPress?(): void;
+	isEnableNotification?: boolean;
 }
 
 export const Header = (props: headerTypes) => {
-	const { heading, onBackPress, enableMenu = false } = props;
+	const {
+		heading,
+		onBackPress,
+		isenableMenu = false,
+		onNotificationPress,
+		isEnableNotification = false,
+	} = props;
 	return (
 		<View style={container}>
 			<TouchableOpacity
@@ -18,7 +26,7 @@ export const Header = (props: headerTypes) => {
 			>
 				<Image
 					source={
-						enableMenu
+						isenableMenu
 							? require('../assets/images/menu.png')
 							: require('../assets/images/backIcon.png')
 					}
@@ -29,27 +37,48 @@ export const Header = (props: headerTypes) => {
 					}}
 				/>
 			</TouchableOpacity>
-			{heading && (
-				<View style={FLEX}>
-					<Text
-						numberOfLines={2}
+			<View style={FLEX}>
+				<Text
+					numberOfLines={2}
+					style={{
+						fontSize: totalSize(2.5),
+						color: appColors.headingTextColor,
+						fontWeight: 800,
+					}}
+				>
+					{heading}
+				</Text>
+			</View>
+			{isEnableNotification && (
+				<TouchableOpacity
+					style={{
+						width: width(10),
+						height: height(10),
+						borderRadius: width(4),
+						alignItems: 'center',
+						justifyContent: 'center',
+					}}
+					onPress={onNotificationPress}
+					accessibilityLabel="back_icon"
+				>
+					<Image
+						source={require('../assets/images/notification.png')}
 						style={{
-							fontSize: totalSize(2.5),
-							color: appColors.headingTextColor,
-							textAlign: 'center',
-							fontWeight: 800,
+							width: 30,
+							height: 30,
+							borderRadius: width(6),
 						}}
-					>
-						{heading}
-					</Text>
-				</View>
+					/>
+				</TouchableOpacity>
 			)}
 		</View>
 	);
 };
 
 const FLEX: ViewStyle = {
-	flex: 1,
+	width: '80%',
+	alignItems: 'center',
+	justifyContent: 'center',
 };
 
 const backStyle: ViewStyle = {
@@ -64,4 +93,5 @@ const container: ViewStyle = {
 	height: height(7.5),
 	flexDirection: 'row',
 	alignItems: 'center',
+	paddingHorizontal: 10,
 };
