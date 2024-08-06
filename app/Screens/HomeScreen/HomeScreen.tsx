@@ -64,10 +64,22 @@ export const HomeScreen: React.FunctionComponent<
 					<FlatList
 						horizontal
 						data={[
-							{ id: '1', balance: '32,453.20', profitPercentage: '+15%' },
-							{ id: '2', balance: '1580.00', profitPercentage: '+15%' },
+							{
+								id: '1',
+								balance: '32,453.20',
+								currency: 'USD',
+								profitPercentage: '+15%',
+								cardBackground: 'orange',
+							},
+							{
+								id: '2',
+								balance: '1580.00',
+								currency: 'GBP',
+								profitPercentage: '-7%',
+								cardBackground: '#191970',
+							},
 						]}
-						renderItem={() => <WalletBalance />}
+						renderItem={item => <WalletBalance data={item.item} />}
 						keyExtractor={item => item.id}
 					/>
 					<View>
@@ -77,6 +89,7 @@ export const HomeScreen: React.FunctionComponent<
 								alignItems: 'center',
 								justifyContent: 'space-between',
 								marginHorizontal: 5,
+								marginTop: 10,
 							}}
 						>
 							<Text
@@ -335,16 +348,18 @@ export const HomeScreen: React.FunctionComponent<
 	);
 };
 
-const WalletBalance = () => {
+const WalletBalance = (props: { data: any }) => {
+	const { data } = props;
+
 	return (
-		<View style={{ flex: 1, marginRight: 16 }}>
+		<View style={{ flex: 1, marginHorizontal: 8 }}>
 			<View
 				style={{
-					backgroundColor: 'orange',
+					backgroundColor: data.cardBackground || 'orange',
 					width: width(72),
 					height: height(20),
 					padding: 20,
-					borderRadius: width(2),
+					borderRadius: width(3),
 					marginBottom: 20,
 				}}
 			>
@@ -365,7 +380,7 @@ const WalletBalance = () => {
 							fontWeight: 400,
 						}}
 					>
-						USD
+						{data.currency}
 					</Text>
 				</View>
 				<Text
@@ -376,7 +391,7 @@ const WalletBalance = () => {
 						marginVertical: 10,
 					}}
 				>
-					32,453.20
+					{data.balance}
 				</Text>
 				<Text
 					style={{
@@ -410,7 +425,7 @@ const WalletBalance = () => {
 							fontWeight: 400,
 						}}
 					>
-						+15%
+						{data.profitPercentage}
 					</Text>
 				</View>
 			</View>

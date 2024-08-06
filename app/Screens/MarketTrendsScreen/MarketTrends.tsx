@@ -30,6 +30,7 @@ export const MarketTrends: React.FunctionComponent<
 					onChangeText={value => setSearchdata(value)}
 					value={searchData}
 					inputType="custom"
+					isEnableSearchicon={true}
 				/>
 				<ScrollView>
 					<View style={{ paddingBottom: 20 }}>

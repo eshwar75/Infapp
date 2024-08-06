@@ -1,7 +1,6 @@
 import React from 'react'
 import {
   Image,
-  SafeAreaView,
   Text,
   TouchableOpacity,
   View,
@@ -49,12 +48,14 @@ export const SignIn: React.FunctionComponent<
             inputType="email"
             onChangeText={(value) => setEmailid(value.trim())}
             value={emailid}
+            isEnableMailicon={true}
           />
           <Input
             placeholderName="Password"
             inputType="password"
             onChangeText={(value) => setPassword(value.trim())}
             value={password}
+            isEnablelockicon={true}
           />
           <View
             style={{ alignItems: 'flex-end', marginTop: 8, marginBottom: 12 }}

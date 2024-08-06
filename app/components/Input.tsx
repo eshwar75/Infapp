@@ -11,6 +11,9 @@ export interface InputProps extends TextInputProps {
 	maxLimit?: number;
 	value?: string;
 	charactersRemainingText?: string;
+	isEnableMailicon?: boolean;
+	isEnablelockicon?: boolean;
+	isEnableSearchicon?: boolean;
 }
 
 export const Input = (props: InputProps) => {
@@ -20,28 +23,55 @@ export const Input = (props: InputProps) => {
 		value,
 		inputType,
 		maxLimit,
+		isEnableMailicon = false,
+		isEnablelockicon = false,
+		isEnableSearchicon = false,
 	} = props;
 	const length = React.useRef(value?.length);
 
 	return (
 		<View style={BASEVIEW}>
 			<View style={flexRowDirection}>
-				<View
-					style={{
-						justifyContent: 'center',
-						alignItems: 'center',
-						paddingHorizontal: 10,
-					}}
-				>
-					<Image
-						source={require('../assets/images/search1.png')}
+				{(isEnableMailicon || isEnablelockicon || isEnableSearchicon) && (
+					<View
 						style={{
-							width: 35,
-							height: 35,
-							borderRadius: width(7),
+							justifyContent: 'center',
+							alignItems: 'center',
+							paddingHorizontal: 10,
 						}}
-					/>
-				</View>
+					>
+						{isEnableMailicon && (
+							<Image
+								source={require('../assets/images/mailicon.png')}
+								style={{
+									width: 35,
+									height: 35,
+									borderRadius: width(7),
+								}}
+							/>
+						)}
+						{isEnablelockicon && (
+							<Image
+								source={require('../assets/images/lockicon.png')}
+								style={{
+									width: 35,
+									height: 35,
+									borderRadius: width(7),
+								}}
+							/>
+						)}
+						{isEnableSearchicon && (
+							<Image
+								source={require('../assets/images/search1.png')}
+								style={{
+									width: 35,
+									height: 35,
+									borderRadius: width(7),
+								}}
+							/>
+						)}
+					</View>
+				)}
 				<TextInput
 					style={[
 						FULL,
@@ -87,7 +117,7 @@ const BASEVIEW: ViewStyle = {
 const placeholderStyle: TextStyle = {
 	fontSize: totalSize(2.2),
 	paddingVertical: 10,
-	paddingHorizontal: 1,
+	paddingHorizontal: 15,
 };
 
 const flexRowDirection: ViewStyle = {
