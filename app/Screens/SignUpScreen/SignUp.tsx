@@ -68,6 +68,9 @@ export const SignUp: React.FunctionComponent<
 							password === confirmPassword
 						) {
 							props.navigation.navigate('mobileVerfiy');
+							setEmailidValue('');
+							setPassword('');
+							setConfirmPassword('');
 						}
 					}}
 				/>

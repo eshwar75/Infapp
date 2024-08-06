@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-	Image,
-	SafeAreaView,
-	Text,
-	TouchableOpacity,
-	View,
-	ViewStyle,
-} from 'react-native';
+import { Image, Text, View, ViewStyle } from 'react-native';
 import { Button, Header, Input } from '../../components';
 import { appColors, totalSize, validatePassword, width } from '../../../src';
 import {
@@ -35,8 +28,6 @@ export const CreatePassword: React.FunctionComponent<
 			setAl(true);
 		}
 	}
-
-	console.log(al, passwordLength, number);
 
 	return (
 		<View style={[FULL, { backgroundColor: appColors.primaryBackgroundColor }]}>
@@ -112,6 +103,10 @@ export const CreatePassword: React.FunctionComponent<
 						text="Continue"
 						onClick={() => {
 							if (validatePassword(password)) {
+								setPassword('');
+								setAl(false);
+								setNumber(false);
+								setPasswordLength(false);
 								props.navigation.navigate('homeScreen');
 							}
 						}}

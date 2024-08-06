@@ -33,6 +33,7 @@ export const HomeScreen: React.FunctionComponent<
 			<Header
 				isenableMenu={true}
 				isEnableNotification={true}
+				onBackPress={() => props.navigation.navigate('signIn')}
 				onNotificationPress={() => props.navigation.navigate('notification')}
 			/>
 			<ScrollView>
