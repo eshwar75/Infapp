@@ -28,7 +28,7 @@ export const CreatePassword: React.FunctionComponent<
 
   return (
     <View style={[FULL, { backgroundColor: appColors.primaryBackgroundColor }]}>
-      <Header heading='Sign in' />
+      <Header heading='Create Password' />
       <View style={{ flex: 1, marginHorizontal: 30 }}>
         <View
           style={{
@@ -52,7 +52,7 @@ export const CreatePassword: React.FunctionComponent<
               justifyContent: 'center',
             }}
           >
-            {'Choose a secure password that wull be easy for you to remember'}
+            {'Choose a secure password that will be easy for you to remember'}
           </Text>
           <Input
             placeholderName='Password'
@@ -62,6 +62,7 @@ export const CreatePassword: React.FunctionComponent<
               checkSpecial(value.trim())
             }}
             value={password}
+            isEnablePasswordViewIcon={true}
           />
           <View style={{ marginVertical: 30 }}>
             <Text

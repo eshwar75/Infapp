@@ -18,15 +18,12 @@ export const SignIn: React.FunctionComponent<
 
   const authValidation = () => {
     if (!emailid && !ValidateEmail(emailid)) {
-      console.log('this is email condition')
       seterrorMessage({
         ...errorMessage,
         emailMessage: 'Enter a valid email address',
       })
       return
     } else if (!validatePassword(password)) {
-      console.log('this is email condition')
-
       seterrorMessage({
         ...errorMessage,
         passwordMessage: 'Password length min eight letters',
@@ -67,8 +64,6 @@ export const SignIn: React.FunctionComponent<
             value={emailid}
             isEnableMailicon={true}
             erroMessage={errorMessage.emailMessage}
-            IconTag={Ionicons}
-            iconName='mail'
           />
           <Input
             placeholderName='Password'
@@ -77,8 +72,6 @@ export const SignIn: React.FunctionComponent<
             value={password}
             isEnablelockicon={true}
             erroMessage={errorMessage.passwordMessage}
-            IconTag={FontAwesome5}
-            iconName='lock'
           />
           <View style={{ alignItems: 'flex-end', marginTop: 8, marginBottom: 12 }}>
             <TouchableOpacity

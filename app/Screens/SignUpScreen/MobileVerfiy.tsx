@@ -1,13 +1,13 @@
+import React, { useState } from 'react'
 import { Image, SafeAreaView, Text, TouchableOpacity, View, ViewStyle } from 'react-native'
 import { LoginNavigatorParamList, NativeStackScreenProps } from '../../navigators'
 import { appColors, totalSize, validateMobileNumber, validateOTP, width } from '../../../src'
 import { Button, Header, Input } from '../../components'
-import React, { useState } from 'react'
+import FontAwesome from 'react-native-vector-icons/FontAwesome'
 
 export const MobileVerfiy: React.FunctionComponent<
   NativeStackScreenProps<LoginNavigatorParamList, 'mobileVerfiy'>
 > = props => {
-  //   const { createPasswordScreen, data } = props.route.params
   const [mobileNumber, setMobileNumber] = useState('')
   const [nextStep, setNextStep] = useState(false)
   const [otp, setOTP] = useState('')
@@ -54,6 +54,7 @@ export const MobileVerfiy: React.FunctionComponent<
                 flexDirection: 'row',
                 alignItems: 'center',
                 justifyContent: 'center',
+                marginBottom: 20,
               }}
             >
               <Text
@@ -141,6 +142,8 @@ export const MobileVerfiy: React.FunctionComponent<
               value={mobileNumber}
               inputType='number'
               maxLimit={10}
+              IconTag={FontAwesome}
+              iconName='phone'
             />
 
             <Text

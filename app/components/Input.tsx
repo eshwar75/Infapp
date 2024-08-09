@@ -3,6 +3,8 @@ import { TextInput, View, ViewStyle, TextStyle, Text, TouchableOpacity } from 'r
 import type { TextInputProps } from 'react-native'
 import { appColors, totalSize, width } from '../../src'
 import Entypo from 'react-native-vector-icons/Entypo'
+import Ionicons from 'react-native-vector-icons/Ionicons'
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 
 export interface InputProps extends TextInputProps {
   placeholderName: string
@@ -20,7 +22,7 @@ export interface InputProps extends TextInputProps {
   IconTag?: any
   iconName?: string
   iconsColor?: string
-  iconSize?: string
+  iconSize?: number
   isEnablePasswordViewIcon?: boolean
 }
 
@@ -33,6 +35,9 @@ export const Input = (props: InputProps) => {
     maxLimit,
     label,
     erroMessage,
+    isEnableMailicon = false,
+    isEnablelockicon = false,
+    isEnableSearchicon = false,
     IconTag: IconTagProps,
     iconName,
     iconsColor,
@@ -56,30 +61,53 @@ export const Input = (props: InputProps) => {
           numberOfLines={1}
         >
           {label}
-          This is label
         </Text>
       )}
       <View style={BASEVIEW}>
         <View style={flexRowDirection}>
-          {IconTagProps && !isEnablePasswordViewIcon && (
-            <View style={{ justifyContent: 'center', paddingLeft: 10 }}>
-              <View
-                style={{
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  width: width(10),
-                  height: width(10),
-                  borderRadius: width(10),
-                }}
-              >
-                <IconTagProps
-                  name={iconName || ''}
-                  size={iconSize || totalSize(3.0)}
-                  color={iconsColor || 'white'}
-                />
+          {(isEnableMailicon || isEnablelockicon || isEnableSearchicon || IconTagProps) &&
+            !isEnablePasswordViewIcon && (
+              <View style={{ justifyContent: 'center', paddingHorizontal: 5 }}>
+                <View
+                  style={{
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    width: width(10),
+                    height: width(10),
+                    borderRadius: width(10),
+                  }}
+                >
+                  {isEnableMailicon && (
+                    <Ionicons
+                      name={'mail'}
+                      size={iconSize || totalSize(2.4)}
+                      color={iconsColor || 'white'}
+                    />
+                  )}
+                  {isEnableSearchicon && (
+                    <FontAwesome5
+                      name={'lock'}
+                      size={iconSize || totalSize(2.4)}
+                      color={iconsColor || 'white'}
+                    />
+                  )}
+                  {isEnableMailicon && (
+                    <FontAwesome5
+                      name={'lock'}
+                      size={iconSize || totalSize(2.4)}
+                      color={iconsColor || 'white'}
+                    />
+                  )}
+                  {IconTagProps && (
+                    <IconTagProps
+                      name={iconName || ''}
+                      size={iconSize || totalSize(2.4)}
+                      color={iconsColor || 'white'}
+                    />
+                  )}
+                </View>
               </View>
-            </View>
-          )}
+            )}
           <TextInput
             style={[FULL, placeholderStyle, { color: appColors.headingTextColor }]}
             placeholder={placeholder}
@@ -88,9 +116,9 @@ export const Input = (props: InputProps) => {
             // placeholderTextColor={appColors.headingTextColor}
             // placeholderTextColor="#505050"
             placeholderTextColor='#515860'
-            secureTextEntry={inputType === 'password' ? true : false}
             autoCorrect={inputType === 'password' || inputType === 'email' ? false : true}
             autoCapitalize='none'
+            secureTextEntry={showPassword}
             keyboardType={
               inputType === 'email'
                 ? 'email-address'
@@ -105,7 +133,7 @@ export const Input = (props: InputProps) => {
             }}
           />
           {inputType === 'password' && isEnablePasswordViewIcon && (
-            <View style={{ justifyContent: 'center', paddingLeft: 10 }}>
+            <View style={{ justifyContent: 'center', paddingHorizontal: 5 }}>
               <TouchableOpacity
                 activeOpacity={0.9}
                 style={{
@@ -153,6 +181,7 @@ const BASEVIEW: ViewStyle = {
   backgroundColor: appColors.inputFieldPrimaryBackgroundColor,
   paddingVertical: 4,
   borderRadius: width(9),
+  paddingHorizontal: 15,
 }
 
 const placeholderStyle: TextStyle = {

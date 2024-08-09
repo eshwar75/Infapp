@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { Image, SafeAreaView, Text, TouchableOpacity, View, ViewStyle } from 'react-native'
 import { LoginNavigatorParamList, NativeStackScreenProps } from '../../navigators'
-import { appColors, totalSize, validateOTP, width } from '../../../src'
+import { appColors, totalSize, ValidateEmail, validateOTP, width } from '../../../src'
 import { Button, Header, Input } from '../../components'
+import Ionicons from 'react-native-vector-icons/Ionicons'
 
 export const MailVerifyScreen: React.FunctionComponent<
   NativeStackScreenProps<LoginNavigatorParamList, 'mailVerifyScreen'>
@@ -11,16 +12,18 @@ export const MailVerifyScreen: React.FunctionComponent<
   const [mockEmail, setMockEmail] = useState('')
   const [nextStep, setNextStep] = useState(false)
   const [otp, setOTP] = useState('')
-
+  const [errorMessage, seterrorMessage] = React.useState('')
   useEffect(() => {
     if (props?.route?.params) {
       const { email } = props?.route?.params
       setEmailidValue(email || '')
-      mackEmail(email)
+      if (email) {
+        modifieToMockEmail(email || '')
+      }
     }
   }, [props?.route?.params])
 
-  function mackEmail(email: string) {
+  function modifieToMockEmail(email: string) {
     const array = email.split('@')
     const subArray = array[0]
     const mackstring = `${subArray[0]}${subArray[1]}***${array[1]}`
@@ -45,17 +48,19 @@ export const MailVerifyScreen: React.FunctionComponent<
                 style={{ width: 200, height: 200 }}
               />
             </View>
-            <Text
-              style={{
-                fontSize: totalSize(2.1),
-                alignSelf: 'center',
-                color: 'rgba(255,255,255,0.8)',
-                marginBottom: 20,
-                justifyContent: 'center',
-              }}
-            >
-              {`An authertication code has been sent to ${mockEmail} enter any 4 digits code`}
-            </Text>
+            {mockEmail && (
+              <Text
+                style={{
+                  fontSize: totalSize(2.1),
+                  alignSelf: 'center',
+                  color: 'rgba(255,255,255,0.8)',
+                  marginBottom: 20,
+                  justifyContent: 'center',
+                }}
+              >
+                {`An authertication code has been sent to ${mockEmail} enter any 4 digits code`}
+              </Text>
+            )}
             <Input
               placeholderName='OTP'
               onChangeText={value => setOTP(value)}
@@ -157,21 +162,32 @@ export const MailVerifyScreen: React.FunctionComponent<
               onChangeText={value => setEmailidValue(value)}
               value={emailIdValue}
               inputType='email'
+              IconTag={Ionicons}
+              iconName='mail'
+              erroMessage={errorMessage}
             />
-            <Text
-              style={{
-                fontSize: totalSize(2.1),
-                alignSelf: 'center',
-                color: 'orange',
-                paddingBottom: 20,
-              }}
-            >
-              {`Email sent ${mockEmail}`}
-            </Text>
+            {mockEmail && (
+              <Text
+                style={{
+                  fontSize: totalSize(2.1),
+                  alignSelf: 'center',
+                  color: 'orange',
+                  paddingBottom: 20,
+                }}
+              >
+                {`Email sent ${mockEmail}`}
+              </Text>
+            )}
             <Button
               text='send'
               onClick={() => {
-                setNextStep(true)
+                if (!emailIdValue && !ValidateEmail(emailIdValue)) {
+                  seterrorMessage('Enter a valid email address')
+                } else {
+                  setNextStep(true)
+                  modifieToMockEmail(emailIdValue)
+                  seterrorMessage('')
+                }
               }}
             />
           </>
